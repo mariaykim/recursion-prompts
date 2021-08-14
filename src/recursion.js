@@ -42,21 +42,74 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  var result = 0;
+  if (array.length === 0) {
+    return 0;
+  }
+
+  for (var i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      result += array[i];
+    } else {
+      result += arraySum(array[i]);
+    }
+  }
+
+  return result;
+
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n === 0) {
+    return true;
+  }
+
+  if (n === 1) {
+    return false;
+  }
+
+  if (n > 1) {
+    return isEven(n-2); //don't forget to return here as well
+  }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  // create a sum variable
+  var sum = 0;
+
+  for (var i = 0; i < n; i++) {
+    sum += i;
+  }
+
+  return sum;
+};
+
+var sumBelowRecursive = function(n) {
+  var sum = 0;
+
+  //edge case
+  if (n === 0) {
+    return 0;
+  }
+  //base case
+  if (n === 1) {
+    return 0;
+  }
+
+  //another way to write the two lines below: return (n-1) + sumBelowRecursive(n-1);
+  sum = n - 1 + sumBelowRecursive(n-1);
+  return sum;
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+
 };
 
 // 7. Compute the exponent of a number.
